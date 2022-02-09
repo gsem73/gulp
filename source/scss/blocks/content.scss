@@ -1,0 +1,16 @@
+.content {
+  min-height: 120px;
+  background-color: $mobile-color;
+}
+
+@media (min-width: $tablet-size) {
+  .content {
+    background-color: $tablet-color;
+  }
+}
+
+@media (min-width: $desktop-size) {
+  .content {
+    background-color: $desktop-color;
+  }
+}
