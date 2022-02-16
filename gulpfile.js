@@ -24,7 +24,13 @@ const server = function() {
   });
 };
 
+const refresh = function (done) {
+  sync.reload();
+  done();
+};
+
 const watcher = function() {
+  gulp.watch("source/*.html", refresh);
   gulp.watch('source/scss/**/*.scss', styles);
 };
 
@@ -35,5 +41,6 @@ export default start;
 export const debug = function(done) {
   console.log(typeof(start));
   console.log(typeof(gulp));
+  gulp.series(styles, gulp.parallel(server, watcher))();
   done();
 };
