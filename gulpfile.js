@@ -4,6 +4,7 @@ import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
 import sourcemap from 'gulp-sourcemaps';
+import svgstore from 'gulp-svgstore';
 
 const styles = function()  {
   return gulp.src('source/scss/style.scss')
@@ -33,6 +34,13 @@ const watcher = function() {
   gulp.watch("source/*.html", refresh);
   gulp.watch('source/scss/**/*.scss', styles);
 };
+
+export const sprite = function() {
+  return gulp.src('source/sprite/*.svg')
+    .pipe(svgstore({inlineSvg: true}))
+    .pipe(gulp.dest('source/img'));
+
+}
 
 export const start = gulp.series(styles, gulp.parallel(server, watcher));
 
